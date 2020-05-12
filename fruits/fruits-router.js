@@ -1,13 +1,6 @@
 const express = require('express');
 const knex = require('knex');
-
-const db = knex({
-  client: 'sqlite3',
-  connection: {
-    filename: './data/produce.db3'
-  },
-  useNullAsDefault: true
-});
+const db = require('../data/dbConnection.js');
 
 const router = express.Router();
 
@@ -37,6 +30,7 @@ router.post('/', (req, res) => {
   const fruitData = req.body;
   db('fruits').insert(fruitData)
   .then(ids => {
+    console.log("ids: ", ids[0])
     db('fruits').where({ id: ids[0] })
     .then(newFruitEntry => {
       res.status(201).json(newFruitEntry);

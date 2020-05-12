@@ -16,3 +16,9 @@ Guided project **DB II** Module.
 - [ ] type `npm run server` to start the API.
 
 Please follow along as the instructor explores schema design with this API.
+
+## Migrations
+
+- `npx knex migrate:make name`
+- `npx knex migrate:latest --env=development` defaults to develoment.
+- `npx knex migrate:rollback --env=production`
